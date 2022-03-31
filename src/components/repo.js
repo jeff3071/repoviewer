@@ -7,12 +7,10 @@ function Repo() {
   const [ Params ] = useState(useParams())
   let [ Repodata , SetRepodata] = useState([])
 
-  
   useEffect(()=>{
     fetch( 'https://api.github.com/repos/'+Params['username']+'/'+Params['reponame'],{method:"GET"})
       .then(res => res.json())
       .then((data)=> {
-        console.log(1)
         SetRepodata(data)
       })
       .catch(e => {
