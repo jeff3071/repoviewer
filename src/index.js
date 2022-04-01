@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import User  from './components/user'
 import App from './App';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 const container = document.getElementById('root');
 
 const root = ReactDOM.createRoot(container);
