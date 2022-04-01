@@ -1,6 +1,6 @@
 import React from "react";
-import User from "./components/user"
-import Repo from "./components/repo"
+import User from "./pages/user"
+import Repo from "./pages/repo"
 import {
   Routes,
   Route,
