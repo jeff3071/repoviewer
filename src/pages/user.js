@@ -44,7 +44,8 @@ function User () {
     }else {
       getrepolist(Page);
     }
-  },[Params['username']]);
+  // eslint-disable-next-line
+  },[Params]);
 
   let Repolists = Userdata.map((repo,index) => 
     <Repoitem key={index} repo={repo} username={Params['username']}></Repoitem>
