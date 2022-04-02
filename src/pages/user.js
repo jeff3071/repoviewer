@@ -12,15 +12,19 @@ function User () {
   let [ Page , SetPage ] = useState(1)
   let [ Flag, SetFlag ] = useState(true)
 
-  const getrepolist = () => {
-    fetch( 'https://api.github.com/users/'+Params['username']+'/repos?sort=created&per_page=10&page='+Page,{method:"GET"})
+  const getrepolist = (value) => {
+    fetch( 'https://api.github.com/users/'+Params['username']+'/repos?sort=created&per_page=10&page='+value,{method:"GET"})
       .then(res => res.json())
       .then((data)=> {
+        console.log('get data', value)
         if(Object.keys(data).length !== 0){
-          console.log('get data', Page)
           SetOwner(data[0]['owner'])
-          SetUserdata([...Userdata,...data])
-          SetPage(Page+1)
+          if(value!==1){
+            SetUserdata([...Userdata,...data])
+          }else{
+            SetUserdata([...data])
+          }
+          SetPage(value+1)
         }else {
           console.log('set flag to false')
           SetFlag(false)
@@ -29,11 +33,18 @@ function User () {
       .catch(e => {
         console.log(e);
       })
+    
   }
 
   useEffect(()=>{
-    getrepolist();
-  },[]);
+    if(Params['username']!==Owner['login']){
+      getrepolist(1);
+      SetPage(1)
+      SetFlag(true)
+    }else {
+      getrepolist(Page);
+    }
+  },[Params['username']]);
 
   let Repolists = Userdata.map((repo,index) => 
     <Repoitem key={index} repo={repo} username={Params['username']}></Repoitem>
@@ -44,9 +55,8 @@ function User () {
     let windowHeight = document.documentElement.clientHeight || document.body.clientHeight
     let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
     if (scrollTop + windowHeight === scrollHeight) {
-      console.log('button')
       if(Flag){
-        getrepolist()
+        getrepolist(Page)
       }
     }
   }

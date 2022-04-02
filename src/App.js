@@ -9,8 +9,9 @@ function App() {
   let Ref = useRef("");
   let navigate = useNavigate()
   let handleclick = () => {
-    if(Ref.current.value)
+    if(Ref.current.value){
       navigate(`/users/${Ref.current.value}/repos`)
+    }
   }
 
   return (
