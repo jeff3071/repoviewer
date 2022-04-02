@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Badge } from "react-bootstrap";
 import Repoicon from "../static/Repo.png";
 import Forkicon from "../static/Fork.png";
 import Staricon from "../static/Star.png";
@@ -22,6 +22,9 @@ class Repodetail extends React.Component {
             </a>
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
+            <Badge pill bg="secondary">
+              {this.props.repodata['language']}
+            </Badge>
             <Button variant="light" size="sm" disabled>
               <img  src={Staricon} alt=""/>
               {this.props.repodata['stargazers_count']}
@@ -30,9 +33,9 @@ class Repodetail extends React.Component {
               <img  src={Forkicon} alt=""/>
               {this.props.repodata['forks_count']}
             </Button>
-            
           </Card.Subtitle>
           <Card.Text>
+            
             {this.props.repodata['description']}
           </Card.Text>
         </Card.Body>

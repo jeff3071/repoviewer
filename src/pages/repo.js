@@ -17,6 +17,7 @@ function Repo() {
           console.log(data)
           SetOwner(data['owner'])
           SetRepodata(data)
+          
         })
         .catch(e => {
           console.log(e);
