@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+
 import React from "react";
 import { Card, Badge, Button} from "react-bootstrap";
 import Repoicon from "../static/Repo.png";
@@ -7,10 +9,10 @@ import '../App.css'
 
 
 class Repoitem extends React.Component {
+  
   render(){
     return (
-      <a href={`/users/${this.props.username}/repos/${this.props.repo['name']}`} className="normal-text">
-        <Card>
+      
           <Card.Body>
             <Card.Title><img src={Repoicon} alt=""/>{this.props.repo['name']}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
@@ -28,10 +30,10 @@ class Repoitem extends React.Component {
             </Card.Subtitle>
             <Card.Text>
               {this.props.repo['topics'].map((tag, index)=><Badge pill key={index} bg="dark">{tag}</Badge>)}
+
+              <a href={`/users/${this.props.username}/repos/${this.props.repo['name']}`} className="stretched-link"></a>
             </Card.Text>
           </Card.Body>
-        </Card>
-      </a>
     )
   }
 }

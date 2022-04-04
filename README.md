@@ -25,3 +25,36 @@ npm start
 ```
 
 `npm start`會將網站啟動在 http://localhost:3000 上
+
+## Architecture
+
+```
+│  App.css
+│  App.js
+│  App.test.js
+│  AppRoute.js
+│  index.js
+│
+├─components
+│      repodetail.js
+│      repoitem.js
+│      userinfo.js
+│
+├─pages
+│      repo.js
+│      user.js
+│
+└─static
+        Fork.png
+        Repo.png
+        Star.png
+```
+
+### Components
+
+- repodetail.js
+    - 顯示repository的資訊
+- repoitem.js
+    - 顯示user repository的list item
+- userinfo.js
+    - 顯示user的avatar、name
