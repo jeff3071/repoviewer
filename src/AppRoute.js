@@ -10,8 +10,8 @@ class AppRoute extends React.Component {
   render () {
     return (
       <Routes>
-        <Route path={'/users/:username/repos'} element={<User/>}/>
-        <Route path={'/users/:username/repos/:reponame'} element={<Repo/>}/>
+        <Route path='/users/:username/repos' element={<User/>}/>
+        <Route path='/users/:username/repos/:reponame' element={<Repo/>}/>
       </Routes>
     )
   }

@@ -7,11 +7,13 @@ import Userinfo from "../components/userinfo";
 
 function User () {
   const Params  = useParams()
-  let [ Userdata , SetUserdata] = useState([])
+  // let [ Userdata , SetUserdata] = useState([])
   let [ Owner , SetOwner] = useState([])
   let [ Page , SetPage ] = useState(1)
   let [ Flag, SetFlag ] = useState(true)
-
+  let [ Repolists, SetRepolists] = useState([])
+  let Userdata = []
+  
   const getrepolist = (value) => {
     fetch( 'https://api.github.com/users/'+Params['username']+'/repos?sort=created&per_page=10&page='+value,{method:"GET"})
       .then(res => res.json())
@@ -20,9 +22,15 @@ function User () {
         if(Object.keys(data).length !== 0){
           SetOwner(data[0]['owner'])
           if(value!==1){
-            SetUserdata([...Userdata,...data])
+            Userdata = [...Userdata,...data].map((repo,index) => 
+              <Repoitem key={index} repo={repo} username={Params['username']}></Repoitem>
+            )
+            SetRepolists(Userdata)
           }else{
-            SetUserdata([...data])
+            Userdata = [...data].map((repo,index) => 
+              <Repoitem key={index} repo={repo} username={Params['username']}></Repoitem>
+            )
+            SetRepolists(Userdata)
           }
           SetPage(value+1)
         }else {
@@ -46,10 +54,6 @@ function User () {
     }
   // eslint-disable-next-line
   },[Params]);
-
-  let Repolists = Userdata.map((repo,index) => 
-    <Repoitem key={index} repo={repo} username={Params['username']}></Repoitem>
-  )
 
   window.onscroll = function () {
     let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
