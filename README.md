@@ -6,6 +6,10 @@
 
 ## Run
 
+### Online
+
+佈署於Netlify上 https://repoviewer.netlify.app
+
 ### Local
 
 > 準備好Node.js
